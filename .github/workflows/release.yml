@@ -20,15 +20,6 @@ jobs:
 
       - run: npm ci
 
-      - name: Check if pre-release
-        id: prerelease
-        run: |
-          if [[ "${{ github.ref_name }}" =~ -(alpha|beta|rc) ]]; then
-            echo "value=true" >> $GITHUB_OUTPUT
-          else
-            echo "value=false" >> $GITHUB_OUTPUT
-          fi
-
       - name: Set version from tag
         run: npm version "${{ github.ref_name }}" --no-git-tag-version
 
