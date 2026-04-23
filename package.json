@@ -1,0 +1,66 @@
+{
+  "name": "notebook-cell-numbers",
+  "displayName": "Notebook Cell Numbers",
+  "description": "Displays persistent cell index numbers (Cell 1, Cell 2, Cell 3…) in the status bar of every notebook cell.",
+  "version": "1.0.0",
+  "publisher": "your-publisher-name",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Notebooks",
+    "Other"
+  ],
+  "keywords": [
+    "jupyter",
+    "notebook",
+    "cell number",
+    "cell index",
+    "cell count"
+  ],
+  "activationEvents": [
+    "onNotebook:jupyter-notebook",
+    "onNotebook:interactive"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "configuration": {
+      "title": "Notebook Cell Numbers",
+      "properties": {
+        "notebookCellNumbers.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show cell index numbers in notebook cells."
+        },
+        "notebookCellNumbers.startFrom": {
+          "type": "number",
+          "default": 1,
+          "description": "Starting number for cell indices (0 or 1)."
+        },
+        "notebookCellNumbers.format": {
+          "type": "string",
+          "default": "Cell {n}",
+          "description": "Format string for the cell number. Use {n} as placeholder for the number."
+        },
+        "notebookCellNumbers.alignment": {
+          "type": "string",
+          "enum": [
+            "left",
+            "right"
+          ],
+          "default": "left",
+          "description": "Alignment of the cell number in the cell status bar."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.75.0",
+    "@vscode/vsce": "^3.9.1",
+    "typescript": "^5.0.0"
+  }
+}

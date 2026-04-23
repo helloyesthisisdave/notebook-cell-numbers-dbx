@@ -1,0 +1,15 @@
+# Compiled output
+out/
+
+# Dependencies
+node_modules/
+
+# Packaged extension
+*.vsix
+
+# Test runner working directory
+.vscode-test/
+
+# OS
+.DS_Store
+Thumbs.db
