@@ -1,7 +1,7 @@
 {
   "name": "notebook-cell-numbers",
   "displayName": "Notebook Cell Numbers",
-  "description": "Persistent cell numbers in the status bar for every notebook cell — including markdown. Fully configurable format, alignment, and start index. Includes a 'Go to Cell...' command for quick navigation. Works on VS Code, VSCodium, and Code OSS. Available on VS Marketplace and Open VSX",
+  "description": "Persistent cell numbers in the status bar for every notebook cell — including markdown. Set editable cell titles stored in notebook metadata. Includes a Cell TOC sidebar panel with content hover-preview and peek navigation. Fully configurable format, alignment, and start index. Works on VS Code, VSCodium, and Code OSS.",
   "version": "1.0.0",
   "publisher": "ostew5",
   "icon": "icon.png",
