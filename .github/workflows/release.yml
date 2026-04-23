@@ -24,6 +24,7 @@ jobs:
         run: npm version "${{ github.ref_name }}" --no-git-tag-version
 
       - name: Commit version bump
+        if: steps.prerelease.outputs.value == 'false'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"

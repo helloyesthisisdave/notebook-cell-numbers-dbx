@@ -27,7 +27,12 @@ export class CellNumberProvider
     const alignment = config.get<string>("alignment", "left");
 
     const cellIndex = cell.index + startFrom;
-    const text = format.replace(/\{n\}/g, String(cellIndex));
+    const title = (cell.metadata?.title as string) || "";
+
+    let text = format.replace(/\{n\}/g, String(cellIndex));
+    if (title) {
+      text += `: ${title}`;
+    }
 
     const item = new vscode.NotebookCellStatusBarItem(
       text,
@@ -36,7 +41,10 @@ export class CellNumberProvider
         : vscode.NotebookCellStatusBarAlignment.Left
     );
 
-    item.tooltip = `Cell index: ${cellIndex} (position ${cell.index})`;
+    item.command = "notebookCellNumbers.editCellTitle";
+    item.tooltip = title
+      ? `Cell ${cellIndex}: ${title} — click to edit title`
+      : `Cell ${cellIndex} — click to add title`;
 
     return [item];
   }
