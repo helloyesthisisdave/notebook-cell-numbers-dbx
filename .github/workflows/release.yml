@@ -38,6 +38,18 @@ jobs:
             echo "value=false" >> $GITHUB_OUTPUT
           fi
 
+      - name: Publish to VS Marketplace
+        if: steps.prerelease.outputs.value == 'false'
+        run: npx vsce publish --packagePath *.vsix
+        env:
+          VSCE_PAT: ${{ secrets.VSCE_PAT }}
+
+      - name: Publish to Open VSX
+        if: steps.prerelease.outputs.value == 'false'
+        run: npx ovsx publish *.vsix
+        env:
+          OVSX_PAT: ${{ secrets.OVSX_PAT }}
+
       - name: Upload release
         uses: softprops/action-gh-release@v2
         with:
