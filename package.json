@@ -3,7 +3,7 @@
   "displayName": "Notebook Cell Numbers",
   "description": "Displays persistent cell index numbers (Cell 1, Cell 2, Cell 3…) in the status bar of every notebook cell.",
   "version": "1.0.0",
-  "publisher": "your-publisher-name",
+  "publisher": "ostew5",
   "engines": {
     "vscode": "^1.75.0"
   },
