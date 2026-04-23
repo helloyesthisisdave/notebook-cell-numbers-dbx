@@ -29,10 +29,23 @@
   ],
   "main": "./out/extension.js",
   "contributes": {
+    "views": {
+      "explorer": [
+        {
+          "id": "cellToc",
+          "name": "Cell Table of Contents"
+        }
+      ]
+    },
     "commands": [
       {
         "command": "notebookCellNumbers.gotoCell",
         "title": "Go to Cell...",
+        "category": "Notebook Cell Numbers"
+      },
+      {
+        "command": "notebookCellNumbers.editCellTitle",
+        "title": "Edit Cell Title",
         "category": "Notebook Cell Numbers"
       }
     ],
