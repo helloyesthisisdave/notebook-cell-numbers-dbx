@@ -1,5 +1,6 @@
 import * as vscode from "vscode";
 import { CellNumberProvider } from "./CellNumberProvider";
+import { GotoCellCommand } from "./GotoCellCommand";
 
 export function activate(context: vscode.ExtensionContext): void {
   const provider = new CellNumberProvider();
@@ -13,6 +14,8 @@ export function activate(context: vscode.ExtensionContext): void {
     }),
     provider
   );
+
+  GotoCellCommand.register(context);
 }
 
 export function deactivate(): void {}
