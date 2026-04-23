@@ -20,13 +20,26 @@ jobs:
 
       - run: npm ci
 
+      - name: Set version from tag
+        run: npm version "${{ github.ref_name }}" --no-git-tag-version
+
       - name: Compile
         run: npm run compile
 
       - name: Package extension
         run: npx vsce package
 
+      - name: Check if pre-release
+        id: prerelease
+        run: |
+          if [[ "${{ github.ref_name }}" =~ -(alpha|beta|rc) ]]; then
+            echo "value=true" >> $GITHUB_OUTPUT
+          else
+            echo "value=false" >> $GITHUB_OUTPUT
+          fi
+
       - name: Upload release
         uses: softprops/action-gh-release@v2
         with:
           files: "*.vsix"
+          prerelease: ${{ steps.prerelease.outputs.value }}
