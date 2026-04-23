@@ -1,10 +1,14 @@
 {
   "name": "notebook-cell-numbers",
   "displayName": "Notebook Cell Numbers",
-  "description": "Displays persistent cell index numbers (Cell 1, Cell 2, Cell 3…) in the status bar of every notebook cell.",
+  "description": "Persistent cell numbers in the status bar for every notebook cell — including markdown. Fully configurable format, alignment, and start index. Includes a 'Go to Cell...' command for quick navigation. Works on VS Code, VSCodium, and Code OSS. Available on VS Marketplace and Open VSX",
   "version": "1.0.0",
   "publisher": "ostew5",
   "icon": "icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ostew5/notebook-cell-numbers"
+  },
   "engines": {
     "vscode": "^1.75.0"
   },
