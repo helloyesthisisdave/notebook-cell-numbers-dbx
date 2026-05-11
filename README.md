@@ -1,8 +1,8 @@
 # Notebook Cell Numbers
 
-> Persistent cell numbers, editable titles, and a Table of Contents sidebar for every VS Code notebook.
+> Persistent cell numbers, editable titles, and a Notebook Outline sidebar for every VS Code notebook.
 
-No more manually counting cells or hunting for the right one — each cell displays its position directly in the status bar, and a sidebar TOC lets you jump anywhere instantly.
+No more manually counting cells or hunting for the right one — each cell displays its position directly in the status bar, and a sidebar outline lets you jump anywhere instantly.
 
 Works on VS Code, VSCodium, and Code OSS.
 
@@ -12,7 +12,7 @@ Works on VS Code, VSCodium, and Code OSS.
 
 - **Persistent cell numbers** — shown on every cell, both code and markdown
 - **Editable cell titles** — set a custom label per cell, stored in notebook metadata
-- **Cell Table of Contents** — sidebar panel listing all cells with content hover-preview and peek navigation
+- **Notebook Outline** — sidebar panel listing all cells with language icons, execution status, content preview on hover, and click-to-navigate
 - **Go to Cell command** — jump to any cell by number or title from the command palette
 - **Universal** — works with Jupyter notebooks, interactive windows, and any other VS Code notebook type
 - **Auto-updating** — numbers stay correct when cells are added, removed, or reordered
@@ -20,9 +20,16 @@ Works on VS Code, VSCodium, and Code OSS.
 
 ---
 
-## Cell Table of Contents
+## Notebook Outline
 
-The **Cell Table of Contents** panel appears in the Explorer sidebar. It lists every cell in the active notebook, lets you hover to preview cell contents, and click to jump directly to that cell.
+The **Notebook Outline** panel appears in the Explorer sidebar whenever a `.ipynb` file is active. It lists every cell with:
+
+- **Language icons** — code cells show the icon for their language (Python, R, TypeScript, etc.), sourced from your active file icon theme
+- **Execution status** — once a cell has been run, the icon switches to a coloured status indicator matching the notebook's own style: green check for success, red error for failure
+- **Execution order** — the `[n]` run count is shown in the description alongside the first line of the cell
+- **Markdown headings** — markdown cell labels strip syntax characters so `## Introduction` appears as `Introduction`
+- **Hover preview** — hover any entry to see a syntax-highlighted preview of the full cell content
+- **Click to navigate** — clicking an entry scrolls the notebook to that cell
 
 ---
 
@@ -79,7 +86,7 @@ npx @vscode/vsce package
 
 ## How it works
 
-The extension uses VS Code's `NotebookCellStatusBarItemProvider` API to inject a label into every cell's built-in status bar — no custom renderers, no webviews, no DOM manipulation. Cell titles are stored in notebook metadata so they persist with the file. The TOC panel is a native VS Code tree view that re-renders automatically as the notebook changes.
+The extension uses VS Code's `NotebookCellStatusBarItemProvider` API to inject a label into every cell's built-in status bar — no custom renderers, no webviews, no DOM manipulation. Cell titles are stored in notebook metadata so they persist with the file. The Notebook Outline is a native VS Code tree view that re-renders automatically as the notebook changes. Language icons are resolved at runtime by reading the active file icon theme's JSON definition, so any SVG-based theme works without configuration.
 
 ---
 

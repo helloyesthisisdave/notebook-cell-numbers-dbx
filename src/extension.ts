@@ -1,13 +1,13 @@
 import * as vscode from "vscode";
 import { CellNumberProvider } from "./CellNumberProvider";
-import { CellTocProvider } from "./CellTocProvider";
+import { NotebookOutlineProvider } from "./CellTocProvider";
 import { EditCellTitleCommand } from "./EditCellTitleCommand";
 import { GotoCellCommand } from "./GotoCellCommand";
 import { PeekCellCommand } from "./PeekCellCommand";
 
 export function activate(context: vscode.ExtensionContext): void {
   const provider = new CellNumberProvider();
-  const tocProvider = new CellTocProvider();
+  const tocProvider = new NotebookOutlineProvider();
 
   // Status bar cell numbers
   context.subscriptions.push(
@@ -17,7 +17,7 @@ export function activate(context: vscode.ExtensionContext): void {
 
   // Cell TOC sidebar panel
   context.subscriptions.push(
-    vscode.window.createTreeView("cellToc", {
+    vscode.window.createTreeView("notebookOutline", {
       treeDataProvider: tocProvider,
       showCollapseAll: false,
     }),
@@ -29,6 +29,9 @@ export function activate(context: vscode.ExtensionContext): void {
     vscode.workspace.onDidChangeConfiguration((e) => {
       if (e.affectsConfiguration("notebookCellNumbers")) {
         provider.refresh();
+        tocProvider.refresh();
+      }
+      if (e.affectsConfiguration("workbench.iconTheme")) {
         tocProvider.refresh();
       }
     }),
