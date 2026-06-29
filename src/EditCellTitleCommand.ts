@@ -21,7 +21,7 @@ export class EditCellTitleCommand {
     const cellIndex = editor.selection.start;
     const cell = editor.notebook.cellAt(cellIndex);
     const currentTitle = (cell.metadata?.title as string) || "";
-    const dbxMetadata = { ...cell.metadata.metadata["application/vnd.databricks.v1+cell"] };
+    const dbxMetadata = { ...cell.metadata.metadata };
 
     const newTitle = await vscode.window.showInputBox({
       prompt: "Enter a title for this cell (leave empty to remove)",
@@ -36,7 +36,8 @@ export class EditCellTitleCommand {
     
     const metadata = { ...cell.metadata };
     dbxMetadata.title = newTitle;
-    metadata.metadata["application/vnd.databricks.v1+cell"] = dbxMetadata;
+    dbxMetadata["application/vnd.databricks.v1+cell"].title = newTitle;
+    metadata.metadata = dbxMetadata;
 
     if (newTitle) {
       metadata.title = newTitle;
