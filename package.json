@@ -1,14 +1,14 @@
 {
-  "name": "notebook-cell-numbers",
-  "displayName": "Notebook Cell Numbers",
-  "description": "Persistent cell numbers in the status bar for every notebook cell — including markdown. Set editable cell titles stored in notebook metadata. Includes a Notebook Outline sidebar with language icons, execution status, and peek navigation. Fully configurable format, alignment, and start index. Works on VS Code, VSCodium, and Code OSS.",
+  "name": "notebook-cell-numbers-dbx",
+  "displayName": "Notebook Cell Numbers - Databricks",
+  "description": "Persistent Databricks compatible cell numbers in the status bar for every notebook cell — including markdown. Set editable cell titles stored in notebook metadata. Includes a Notebook Outline sidebar with language icons, execution status, and peek navigation. Fully configurable format, alignment, and start index. Works on VS Code, VSCodium, and Code OSS.",
   "version": "1.0.0",
-  "publisher": "ostew5",
+  "publisher": "helloyesthisisdave",
   "license": "SEE LICENSE IN LICENSE.txt",
   "icon": "icon.png",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ostew5/notebook-cell-numbers"
+    "url": "https://github.com/helloyesthisisdave/notebook-cell-numbers-dbx"
   },
   "engines": {
     "vscode": "^1.75.0"

@@ -5,7 +5,7 @@ out/
 node_modules/
 
 # Packaged extension
-*.vsix
+#*.vsix
 
 # Test runner working directory
 .vscode-test/
