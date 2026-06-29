@@ -35,8 +35,12 @@ export class EditCellTitleCommand {
     const metadata = { ...cell.metadata };
     if (newTitle) {
       metadata.title = newTitle;
+      metadata["application/vnd.databricks.v1+cell"].title = newTitle;
+
     } else {
       delete metadata.title;
+      delete metadata["application/vnd.databricks.v1+cell"].title;
+
     }
 
     const edit = new vscode.WorkspaceEdit();
