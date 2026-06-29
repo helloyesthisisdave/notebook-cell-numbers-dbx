@@ -20,8 +20,19 @@ export class EditCellTitleCommand {
 
     const cellIndex = editor.selection.start;
     const cell = editor.notebook.cellAt(cellIndex);
-    const currentTitle = (cell.metadata?.title as string) || "";
-    const dbxMetadata = { ...cell.metadata.metadata };
+    const dbxMetadata = { ...cell.metadata?.metadata };
+
+    // Check for databricks metadata object and create a basic version if not found
+    if (!dbxMetadata["application/vnd.databricks.v1+cell"]) {
+      dbxMetadata["application/vnd.databricks.v1+cell"] = {"title": ""};
+    }
+    
+    // Check for a title property and add one if not found
+    if (!dbxMetadata["application/vnd.databricks.v1+cell"].title) {
+        dbxMetadata["application/vnd.databricks.v1+cell"].title = "";
+    }
+
+    const currentTitle = (dbxMetadata["application/vnd.databricks.v1+cell"].title as string) || "";
 
     const newTitle = await vscode.window.showInputBox({
       prompt: "Enter a title for this cell (leave empty to remove)",
@@ -34,20 +45,13 @@ export class EditCellTitleCommand {
     }
 
     
-    const metadata = { ...cell.metadata };
+    const updatedMetadata = { ...cell.metadata };
     dbxMetadata["application/vnd.databricks.v1+cell"].title = newTitle;
-    metadata.metadata = dbxMetadata;
-
-    if (newTitle) {
-      metadata.title = newTitle;
-    } else {
-      delete metadata.title;
-
-    }
+    updatedMetadata.metadata = dbxMetadata;
 
     const edit = new vscode.WorkspaceEdit();
     edit.set(cell.notebook.uri, [
-      vscode.NotebookEdit.updateCellMetadata(cellIndex, metadata),
+      vscode.NotebookEdit.updateCellMetadata(cellIndex, updatedMetadata),
     ]);
     await vscode.workspace.applyEdit(edit);
   }

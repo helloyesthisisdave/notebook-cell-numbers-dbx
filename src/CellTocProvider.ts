@@ -194,7 +194,7 @@ export class NotebookOutlineProvider
     const config = vscode.workspace.getConfiguration("notebookCellNumbers");
     const startFrom = config.get<number>("startFrom", 1);
     const cellNumber = cell.index + startFrom;
-    const title = (cell.metadata?.title as string) || "";
+    const title = (cell.metadata?.metadata["application/vnd.databricks.v1+cell"]?.title as string) || "";
     const isCode = cell.kind === vscode.NotebookCellKind.Code;
 
     // Build label

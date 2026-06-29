@@ -27,7 +27,7 @@ export class CellNumberProvider
     const alignment = config.get<string>("alignment", "left");
 
     const cellIndex = cell.index + startFrom;
-    const title = (cell.metadata?.title as string) || "";
+    const title = (cell.metadata?.metadata["application/vnd.databricks.v1+cell"]?.title as string) || "";
 
     let text = format.replace(/\{n\}/g, String(cellIndex));
     if (title) {
