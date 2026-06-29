@@ -35,7 +35,6 @@ export class EditCellTitleCommand {
 
     
     const metadata = { ...cell.metadata };
-    dbxMetadata.title = newTitle;
     dbxMetadata["application/vnd.databricks.v1+cell"].title = newTitle;
     metadata.metadata = dbxMetadata;
 
